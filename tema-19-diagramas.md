@@ -47,7 +47,6 @@
   <rect x="120" y="128" width="360" height="28" fill="#eef4fa"/><text x="180" y="147" text-anchor="middle" class="s1">T-003</text><text x="300" y="147" text-anchor="middle" class="s1">IBI</text><text x="420" y="147" text-anchor="middle" class="s1">401,10</text>
   <rect x="120" y="42" width="360" height="114" fill="none" stroke="#0055a0" stroke-width="1.5"/>
   <text x="60" y="182" class="l1">↑ La tabla completa es la RELACIÓN</text>
-  <line x1="60" y1="70" x2="115" y2="86" stroke="#e89822" stroke-width="1.5"/>
   <text x="490" y="90" class="l1">← una fila es una TUPLA</text>
   <text x="300" y="230" text-anchor="middle" class="l1">Cada columna (id_tributo, tipo, importe) es un ATRIBUTO;</text>
   <text x="300" y="248" text-anchor="middle" class="l1">el conjunto de nombres y tipos de columnas es el ESQUEMA de la relación.</text>
