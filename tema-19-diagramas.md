@@ -49,7 +49,6 @@
   <text x="60" y="182" class="l1">↑ La tabla completa es la RELACIÓN</text>
   <line x1="60" y1="70" x2="115" y2="86" stroke="#e89822" stroke-width="1.5"/>
   <text x="490" y="90" class="l1">← una fila es una TUPLA</text>
-  <line x1="300" y1="42" x2="300" y2="20" stroke="#2d8659" stroke-width="1.5"/>
   <text x="300" y="230" text-anchor="middle" class="l1">Cada columna (id_tributo, tipo, importe) es un ATRIBUTO;</text>
   <text x="300" y="248" text-anchor="middle" class="l1">el conjunto de nombres y tipos de columnas es el ESQUEMA de la relación.</text>
   <text x="630" y="292" text-anchor="end" style="font:11px system-ui;fill:#666">[Fuente: CODD70]</text>
@@ -134,7 +133,7 @@
   <text x="340" y="22" text-anchor="middle" class="h4">Los cinco sublenguajes que componen SQL</text>
   <rect x="20" y="42" width="120" height="86" rx="6" fill="#0055a0"/><text x="80" y="64" text-anchor="middle" class="t4">DDL</text><text x="80" y="82" text-anchor="middle" class="s4">Define estructura</text><text x="80" y="98" text-anchor="middle" class="s4">CREATE ALTER</text><text x="80" y="114" text-anchor="middle" class="s4">DROP TRUNCATE</text>
   <rect x="150" y="42" width="120" height="86" rx="6" fill="#2d8659"/><text x="210" y="64" text-anchor="middle" class="t4">DML</text><text x="210" y="82" text-anchor="middle" class="s4">Manipula datos</text><text x="210" y="98" text-anchor="middle" class="s4">INSERT UPDATE</text><text x="210" y="114" text-anchor="middle" class="s4">DELETE MERGE</text>
-  <rect x="280" y="42" width="120" height="86" rx="6" fill="#3778b5"/><text x="340" y="64" text-anchor="middle" class="t4">DQL</text><text x="340" y="82" text-anchor="middle" class="s4">Consulta datos</text><text x="340" y="98" text-anchor="middle" class="s4">SELECT</text><text x="340" y="114" text-anchor="middle" class="s4">(subconjunto DML</text><text x="340" y="128" text-anchor="middle" class="s4">en el estándar)</text>
+  <rect x="280" y="42" width="120" height="86" rx="6" fill="#3778b5"/><text x="340" y="64" text-anchor="middle" class="t4">DQL</text><text x="340" y="82" text-anchor="middle" class="s4">Consulta datos</text><text x="340" y="98" text-anchor="middle" class="s4">SELECT</text><text x="340" y="114" text-anchor="middle" class="s4">(subconjunto DML)</text>
   <rect x="410" y="42" width="120" height="86" rx="6" fill="#e89822"/><text x="470" y="64" text-anchor="middle" class="t4">DCL</text><text x="470" y="82" text-anchor="middle" class="s4">Controla permisos</text><text x="470" y="98" text-anchor="middle" class="s4">GRANT</text><text x="470" y="114" text-anchor="middle" class="s4">REVOKE</text>
   <rect x="540" y="42" width="120" height="86" rx="6" fill="#d13c3c"/><text x="600" y="64" text-anchor="middle" class="t4">TCL</text><text x="600" y="82" text-anchor="middle" class="s4">Control transacciones</text><text x="600" y="98" text-anchor="middle" class="s4">COMMIT ROLLBACK</text><text x="600" y="114" text-anchor="middle" class="s4">SAVEPOINT</text>
   <rect x="60" y="150" width="560" height="90" rx="6" fill="#eef4fa" stroke="#0055a0"/>
@@ -228,7 +227,7 @@
     <circle cx="45" cy="60" r="45" fill="#0055a0" opacity="0.35"/><circle cx="85" cy="60" r="45" fill="#2d8659"/>
     <text x="65" y="130" text-anchor="middle" class="t7">RIGHT JOIN</text><text x="65" y="146" text-anchor="middle" class="l7">todo B + coincid. de A</text>
   </g>
-  <g transform="translate(570,50)">
+  <g transform="translate(540,50)">
     <circle cx="45" cy="60" r="45" fill="#0055a0"/><circle cx="85" cy="60" r="45" fill="#2d8659"/>
     <text x="65" y="130" text-anchor="middle" class="t7">FULL JOIN</text><text x="65" y="146" text-anchor="middle" class="l7">todo A + todo B</text>
   </g>
@@ -287,9 +286,9 @@
   <path d="M320 86 L320 116" stroke="#888" stroke-width="2" marker-end="url(#a9)"/>
   <text x="345" y="106" class="l9">UNION ALL</text>
   <rect x="200" y="118" width="240" height="46" rx="6" fill="#2d8659"/><text x="320" y="138" text-anchor="middle" class="t9">MIEMBRO RECURSIVO</text><text x="320" y="156" text-anchor="middle" class="s9">referencia la propia CTE</text>
-  <path d="M440 141 C 520 141 520 200 400 200" stroke="#0055a0" stroke-width="2" fill="none" marker-end="url(#a9)"/>
-  <text x="470" y="185" class="l9">se repite sobre</text>
-  <text x="470" y="199" class="l9">el resultado previo</text>
+  <path d="M440 141 L500 141 L500 216 L462 216" stroke="#0055a0" stroke-width="2" fill="none" marker-end="url(#a9)"/>
+  <text x="506" y="170" class="l9">se repite sobre</text>
+  <text x="506" y="184" class="l9">el resultado previo</text>
   <path d="M320 164 L320 194" stroke="#888" stroke-width="2" marker-end="url(#a9)"/>
   <rect x="180" y="196" width="280" height="40" rx="6" fill="#e89822"/><text x="320" y="221" text-anchor="middle" class="t9">¿produce filas nuevas?</text>
   <path d="M320 236 L320 260" stroke="#d13c3c" stroke-width="2" marker-end="url(#a9)"/>
