@@ -27,7 +27,9 @@ def read(name):
 def inline(t):
     t = t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
     t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
-    t = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", t)
+    # negrita ANTES que cursiva y no greedy: admite **negrita con *cursiva* dentro**
+    # (fix de la serie a partir del T28, portado a los builders anteriores)
+    t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
     t = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", t)
     return t
 

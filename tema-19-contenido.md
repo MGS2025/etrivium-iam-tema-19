@@ -580,6 +580,8 @@ Los disparadores son una herramienta potente, pero conllevan riesgos bien docume
 
 ## 5. Tendencias actuales en los lenguajes de interrogación
 
+> **Material complementario.** El enunciado oficial de este tema no nombra este apartado. Se mantiene porque esta materia envejece deprisa y conviene conocer su estado actual, pero lo exigible es lo que enumera el título del tema.
+
 El estándar SQL sigue evolucionando para responder a necesidades que no existían cuando se formalizó el modelo relacional clásico, sin que esto reste vigencia a los fundamentos de este tema [MELTON, cap. 12]:
 
 - **Convergencia SQL / NoSQL**: el soporte nativo de **JSON** en el estándar (SQL:2016, funciones `JSON_VALUE`, `JSON_TABLE`) permite almacenar y consultar datos semiestructurados **dentro** de un motor relacional, reduciendo la necesidad de elegir entre un SGBD relacional y uno documental para un mismo proyecto (→ **Tema 15**, SGBD NoSQL).

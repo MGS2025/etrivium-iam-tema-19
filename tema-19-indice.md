@@ -41,7 +41,7 @@
    4.3. Casos de uso de eventos y disparadores
    4.4. Riesgos, limitaciones y buenas prácticas
 
-5. **Tendencias actuales en los lenguajes de interrogación**
+5. **Tendencias actuales en los lenguajes de interrogación (material complementario)**
 
 ---
 
