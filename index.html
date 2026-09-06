@@ -66,6 +66,16 @@ svg{max-width:100%;height:auto;display:block;margin:14px auto;background:#fff;bo
 @media(max-width:640px){.tabs{top:0}.test-bar{top:0}}
 
 .indice-outline ol{margin:6px 0 6px 18px}
+
+/* ficha-estudio */
+.ficha-estudio{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.ficha-estudio .fe-item{flex:1 1 260px;border:1px solid rgba(127,127,127,.28);
+  border-left:3px solid #c77a1b;border-radius:6px;padding:10px 14px}
+.ficha-estudio .fe-k{display:block;font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;opacity:.72;margin-bottom:3px}
+.ficha-estudio .fe-v{display:block;font-size:15px;font-weight:600;line-height:1.4}
+.ficha-estudio .fe-n{font-weight:400;font-size:13px;opacity:.75}
+@media print{.ficha-estudio .fe-item{break-inside:avoid}}
 </style>
 </head>
 <body>
@@ -76,10 +86,10 @@ svg{max-width:100%;height:auto;display:block;margin:14px auto;background:#fff;bo
   <h1>Tema 19 — Lenguajes de interrogación de bases de datos</h1>
   <div class="sub">El estándar ANSI SQL · Procedimientos almacenados · Eventos y disparadores</div>
   <div class="banner"><strong>Parte II — Técnico · C1 Ayuntamiento de Madrid</strong> · Piloto v1.0 · 2026-07-13 · Pendiente de validación</div>
-</div>
+</div><!-- ficha-estudio:ini --><div class="ficha-estudio"><div class="fe-item"><span class="fe-k">Extensi&oacute;n</span><span class="fe-v">~8.800 palabras &middot; 12 diagramas &middot; 60 preguntas de test</span></div><div class="fe-item"><span class="fe-k">Tiempo estimado de estudio</span><span class="fe-v">10-12 horas <span class="fe-n">(primera vuelta completa, sin contar repasos)</span></span></div></div><!-- ficha-estudio:fin -->
 <h2>Qué incluye este tema</h2>
 <table><thead><tr><th>Entregable</th><th>Cantidad</th></tr></thead><tbody>
-<tr><td>Contenido teórico</td><td>5 secciones · 27 epígrafes · ~8.350 palabras</td></tr>
+<tr><td>Contenido teórico</td><td>5 secciones · 27 epígrafes · ~8.800 palabras</td></tr>
 <tr><td>Diagramas SVG inline</td><td>12 diagramas autosuficientes</td></tr>
 <tr><td>Banco de preguntas tipo test</td><td>60 preguntas A/B/C (balanceadas 20/20/20) con corrección y penalización 1/3</td></tr>
 <tr><td>Casos prácticos Ayto Madrid</td><td>3 casos (recaudación de tributos, censo del Padrón, expedientes)</td></tr>
@@ -382,8 +392,7 @@ FIN</code></pre>
 <div class="indice-outline"><ol style="list-style:none"><li><strong>1. Lenguajes de interrogación de bases de datos</strong><ol style="list-style:none"><li>1.1. Definición en el modelo relacional</li><li>1.2. Álgebra relacional y el cálculo relacional</li><li>1.3. Tipología de lenguajes en un SGBD</li><li>1.4. Lenguajes procedimentales y declarativos</li><li>1.5. Utilización de lenguajes en aplicaciones</li></ol></li><li><strong>2. El estándar ANSI SQL</strong><ol style="list-style:none"><li>2.1. Origen y evolución del estándar SQL</li><li>2.2. Niveles de conformidad</li><li>2.3. Sintaxis de una sentencia SQL</li><li>2.4. Operaciones de agregación, agrupamiento y filtrado</li><li>2.5. Tipologías de acoplamiento (Join)</li><li>2.6. Subconsultas: correlacionadas, no correlacionadas y predicados cuantificados</li><li>2.7. Expresiones de Tabla Comunes (CTE) y consultas recursivas</li><li>2.8. Funciones de ventana analíticas</li><li>2.9. Extensiones del estándar y extensiones procedimentales</li></ol></li><li><strong>3. Procedimientos almacenados</strong><ol style="list-style:none"><li>3.1. Concepto y características</li><li>3.2. Arquitectura y ciclo de vida de ejecución en el servidor</li><li>3.3. Parámetros de entrada, salida y retorno</li><li>3.4. Gestión de cursores y tipos de cursores</li><li>3.5. Estructuras de control de flujo</li><li>3.6. Gestión de excepciones y errores</li></ol></li><li><strong>4. Eventos y disparadores</strong><ol style="list-style:none"><li>4.1. Definición, arquitectura orientada a eventos</li><li>4.2. Clasificación de los disparadores</li><li>4.3. Casos de uso de eventos y disparadores</li><li>4.4. Riesgos, limitaciones y buenas prácticas</li></ol></li><li><strong>5. Tendencias actuales en los lenguajes de interrogación</strong></li></ol></div>
 <h2>Conceptos clave para memorizar</h2>
 <table><thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead><tbody><tr><td>Lenguaje de interrogación</td><td>Permite formular consultas sobre las relaciones (tablas) del modelo relacional de Codd (1970)</td></tr><tr><td>Álgebra relacional</td><td>Lenguaje <strong>procedimental</strong>: operadores (σ, π, ρ, ∪, −, ×, ⋈, ÷) que se componen paso a paso; dice <strong>CÓMO</strong></td></tr><tr><td>Cálculo relacional</td><td>Lenguaje <strong>declarativo</strong>, basado en lógica de predicados; dice <strong>QUÉ</strong> se quiere, no el procedimiento</td></tr><tr><td>Completitud relacional (Codd)</td><td>Un lenguaje es relacionalmente completo si iguala en poder expresivo al álgebra/cálculo relacional</td></tr><tr><td>DDL / DML / DQL</td><td>Definición (CREATE/ALTER/DROP) / Manipulación (INSERT/UPDATE/DELETE) / Consulta (SELECT)</td></tr><tr><td>DCL / TCL</td><td>Control de datos: permisos (GRANT/REVOKE) / Control de transacciones (COMMIT/ROLLBACK/SAVEPOINT)</td></tr><tr><td>SEQUEL → SQL</td><td>Chamberlin y Boyce (IBM, 1974) sobre System R; renombrado SQL por conflicto de marca</td></tr><tr><td>SQL-86 / SQL-92 / SQL:1999</td><td>Primer estándar ANSI (1986) / gran expansión — joins explícitos, subconsultas (1992) / recursividad y triggers (1999)</td></tr><tr><td>Niveles de conformidad SQL-92</td><td>Entry, Intermediate, Full — sustituidos desde SQL:1999 por «core» + «features» opcionales</td></tr><tr><td>Orden lógico de evaluación</td><td>FROM → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT</td></tr><tr><td>WHERE vs HAVING</td><td>WHERE filtra filas <strong>antes</strong> de agrupar; HAVING filtra grupos <strong>después</strong> de agregar</td></tr><tr><td>Subconsulta correlacionada</td><td>Referencia columnas de la consulta externa; se reevalúa por cada fila candidata</td></tr><tr><td>CTE recursiva</td><td><code>WITH RECURSIVE</code>: miembro ancla <code>UNION ALL</code> miembro recursivo, con condición de parada</td></tr><tr><td>Función de ventana</td><td><code>OVER (PARTITION BY … ORDER BY …)</code>: calcula sobre un grupo <strong>sin colapsar</strong> las filas (a diferencia de GROUP BY)</td></tr><tr><td>Procedimiento almacenado</td><td>Bloque de código precompilado y almacenado en el catálogo del SGBD, ejecutado en el servidor</td></tr><tr><td>Cursor</td><td>Puntero para recorrer fila a fila un resultado cuando no basta el procesamiento por conjuntos</td></tr><tr><td>Parámetros IN / OUT / INOUT</td><td>Solo entrada / solo salida / entrada y salida</td></tr><tr><td>Disparador (trigger)</td><td>Procedimiento especial que se ejecuta automáticamente ante un evento, sin invocación explícita</td></tr><tr><td>BEFORE / AFTER</td><td>Se dispara antes de aplicar el cambio (puede cancelarlo) / después de aplicarlo</td></tr><tr><td>De fila / de sentencia</td><td>Una ejecución por cada fila afectada (<code>FOR EACH ROW</code>) / una única ejecución por sentencia</td></tr><tr><td>INSTEAD OF</td><td>Sustituye la operación DML sobre una vista no actualizable, redirigiéndola a las tablas base</td></tr></tbody></table>
-<p><em>Tiempo estimado de estudio: 13-15 horas</em></p>
-<p><em>Extensión del contenido: ~13.000-15.000 palabras · 12 diagramas SVG embebidos</em></p></section>
+<!-- ficha-estudio:ini --><div class="ficha-estudio"><div class="fe-item"><span class="fe-k">Extensi&oacute;n</span><span class="fe-v">~8.800 palabras &middot; 12 diagramas &middot; 60 preguntas de test</span></div><div class="fe-item"><span class="fe-k">Tiempo estimado de estudio</span><span class="fe-v">10-12 horas <span class="fe-n">(primera vuelta completa, sin contar repasos)</span></span></div></div><!-- ficha-estudio:fin --></section>
 <section id="tab-diagramas" class="tab-content"><hr>
 <hr>
 <h2>Índice de diagramas</h2>
