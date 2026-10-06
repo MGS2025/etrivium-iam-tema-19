@@ -4,6 +4,20 @@
 
 ---
 
+## v1.3 — 2026-10-01 — Normas vigentes y correcciones comunes de la revisión
+
+**Motivo**: revisión de la serie del 01-10-2026 (decisiones de Joan y María): normas caducadas con el patrón de dos filas en Fuentes y correcciones comunes (referencias al cliente y al origen del material, promesas sobre el examen, AP → AAPP).
+
+### Cambios
+
+- **ISO/IEC 25010:2011 → 25010:2023** en Fuentes (vigente + fila histórica `[ISO25010-2011]`). La cita de preferir restricciones a disparadores se mantiene con el año corregido.
+- Leyenda de las cajas: se quita «con alta probabilidad de aparecer en el test oficial».
+- Fuera las promesas sobre el examen en contenido, diagrama D5 y explicaciones de dos preguntas del test (sin cambio de enunciado, opciones ni respuesta).
+- Fuera las menciones «decisión de Joan» (contenido, caso práctico y fuentes).
+- Títulos de las cajas homogeneizados con los temas 1-10 (revisión jurídica): «Dato clave», «Ejemplo de aplicación en el Ayto» y «Relación con otros temas»; las cajas «Ejercicio resuelto» no cambian.
+
+---
+
 ## v1.2 — 2026-09-06 — Marcado del apartado complementario
 
 **Estado**: pendiente de validación por el IAM.

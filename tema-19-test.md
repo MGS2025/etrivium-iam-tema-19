@@ -504,7 +504,7 @@ C) HAVING se ejecuta siempre antes que WHERE
 
 <details><summary>Respuesta</summary>
 
-**Correcta: B) WHERE filtra filas antes de agrupar; HAVING filtra grupos después de la agregación** Es una de las distinciones más preguntadas del bloque SQL.
+**Correcta: B) WHERE filtra filas antes de agrupar; HAVING filtra grupos después de la agregación** Es una de las distinciones básicas del bloque SQL.
 
 *Referencia: §2.4 [SILBERSCHATZ, cap. 3]*
 </details>
@@ -691,7 +691,7 @@ C) Se comporta exactamente igual que NOT EXISTS en todos los casos
 
 <details><summary>Respuesta</summary>
 
-**Correcta: A) Puede no devolver ninguna fila, por la lógica trivaluada de SQL** Es una trampa clásica de examen: NOT EXISTS no tiene ese problema y suele ser la alternativa más segura.
+**Correcta: A) Puede no devolver ninguna fila, por la lógica trivaluada de SQL** NOT EXISTS no tiene ese problema y suele ser la alternativa más segura.
 
 *Referencia: §2.6 [SILBERSCHATZ, cap. 3]*
 </details>

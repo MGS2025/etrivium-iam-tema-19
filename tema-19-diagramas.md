@@ -169,7 +169,7 @@
   <rect x="60" y="160" width="200" height="40" rx="5" fill="#2d8659"/><text x="160" y="184" text-anchor="middle" style="font:700 11px system-ui;fill:#fff">SQL:2003 — Ventanas OVER</text>
   <rect x="280" y="160" width="180" height="40" rx="5" fill="#e89822"/><text x="370" y="184" text-anchor="middle" style="font:700 11px system-ui;fill:#fff">SQL:2016 — JSON nativo</text>
   <rect x="480" y="160" width="180" height="40" rx="5" fill="#888"/><text x="570" y="184" text-anchor="middle" style="font:700 11px system-ui;fill:#fff">SQL:2023 — SQL/PGQ (grafos)</text>
-  <text x="340" y="230" text-anchor="middle" class="l5">Los tres hitos resaltados en azul/rojo son los más preguntados: SQL-86, SQL-92 y SQL:1999</text>
+  <text x="340" y="230" text-anchor="middle" class="l5">Los tres hitos resaltados en azul/rojo: SQL-86, SQL-92 y SQL:1999</text>
   <text x="340" y="250" text-anchor="middle" class="l5">Cada motor comercial implementa un subconjunto del estándar más extensiones propias</text>
   <text x="670" y="312" text-anchor="end" style="font:11px system-ui;fill:#666">[Fuente: MELTON, cap. 1; CHAMBERLIN74]</text>
 </svg>

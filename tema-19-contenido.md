@@ -16,15 +16,15 @@
 
 Este tema incluye cuatro tipos de **cajas callout** para facilitar el estudio:
 
-> **[DATO CLAVE EXAMEN]** Información de alta densidad memorística, con alta probabilidad de aparecer en el test oficial.
+> **[DATO CLAVE]** Información de alta densidad memorística.
 
 > **[EJERCICIO RESUELTO]** Problema + solución paso a paso (una consulta, una traza, el diseño de un procedimiento).
 
-> **[EJEMPLO AYTO MADRID]** Aplicación real de la teoría al entorno municipal (Padrón, tributos, expedientes, licencias).
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Aplicación real de la teoría al entorno municipal (Padrón, tributos, expedientes, licencias).
 
-> **[REFERENCIA CRUZADA]** Enlace conceptual a otros temas del temario oficial.
+> **[RELACIÓN CON OTROS TEMAS]** Enlace conceptual a otros temas del temario oficial.
 
-Los ejemplos de **consultas** se escriben en **SQL estándar (ANSI SQL / ISO-IEC 9075)**, sin extensiones propietarias, tal y como corresponde a un tema centrado en el **estándar** (decisión de Joan). Los ejemplos de **procedimientos almacenados y disparadores** se escriben en **pseudocódigo SQL genérico** (`CREATE PROCEDURE … INICIO … FIN`, `SI … ENTONCES … FIN_SI`), porque el propio estándar (SQL/PSM, ISO/IEC 9075-4) apenas se implementa tal cual en la práctica: cada motor tiene su dialecto (PL/SQL de Oracle, T-SQL de SQL Server, PL/pgSQL de PostgreSQL). Cuando conviene situar una particularidad real se nombra el motor entre corchetes de referencia (`[ORACLE-DOC]`, `[MSSQL-DOC]`, `[PSQL-DOC]`, `[MYSQL-DOC]`) sin atar el tema a ninguno. Las fuentes se citan con etiquetas breves tipo `[DATE-REL]` o `[SILBERSCHATZ, cap. 8]`; el registro completo está en `tema-19-fuentes.md`.
+Los ejemplos de **consultas** se escriben en **SQL estándar (ANSI SQL / ISO-IEC 9075)**, sin extensiones propietarias, tal y como corresponde a un tema centrado en el **estándar**. Los ejemplos de **procedimientos almacenados y disparadores** se escriben en **pseudocódigo SQL genérico** (`CREATE PROCEDURE … INICIO … FIN`, `SI … ENTONCES … FIN_SI`), porque el propio estándar (SQL/PSM, ISO/IEC 9075-4) apenas se implementa tal cual en la práctica: cada motor tiene su dialecto (PL/SQL de Oracle, T-SQL de SQL Server, PL/pgSQL de PostgreSQL). Cuando conviene situar una particularidad real se nombra el motor entre corchetes de referencia (`[ORACLE-DOC]`, `[MSSQL-DOC]`, `[PSQL-DOC]`, `[MYSQL-DOC]`) sin atar el tema a ninguno. Las fuentes se citan con etiquetas breves tipo `[DATE-REL]` o `[SILBERSCHATZ, cap. 8]`; el registro completo está en `tema-19-fuentes.md`.
 
 **Esquema de ejemplo usado en todo el tema** (contexto Ayuntamiento de Madrid, simplificado):
 
@@ -46,9 +46,9 @@ Un **lenguaje de interrogación de bases de datos** (*query language*) es la not
 
 Codd definió formalmente dos lenguajes equivalentes para interrogar el modelo relacional: el **álgebra relacional**, de naturaleza **procedimental**, y el **cálculo relacional**, de naturaleza **declarativa** [CODD70; DATE-REL, cap. 6]. Ambos son el fundamento teórico sobre el que se construyó después **SQL**, el lenguaje comercial que domina hoy la interrogación de bases de datos relacionales.
 
-> **[DATO CLAVE EXAMEN]** Un lenguaje de interrogación relacional se dice **relacionalmente completo** cuando tiene, como mínimo, el mismo poder expresivo que el álgebra relacional (o el cálculo relacional seguro, que son equivalentes). Es la **prueba de Codd** para valorar si un lenguaje de consulta es suficientemente potente [CODD70; DATE-REL, cap. 6].
+> **[DATO CLAVE]** Un lenguaje de interrogación relacional se dice **relacionalmente completo** cuando tiene, como mínimo, el mismo poder expresivo que el álgebra relacional (o el cálculo relacional seguro, que son equivalentes). Es la **prueba de Codd** para valorar si un lenguaje de consulta es suficientemente potente [CODD70; DATE-REL, cap. 6].
 
-> **[REFERENCIA CRUZADA]** El **Tema 15** trata los SGBD relacionales, orientados a objetos y NoSQL como sistemas; el **Tema 16**, el **modelo conceptual** de datos (entidad-relación) que se traduce al modelo relacional; el **Tema 17**, el **diseño lógico** (normalización) que produce el esquema de tablas sobre el que este Tema 19 formula las consultas.
+> **[RELACIÓN CON OTROS TEMAS]** El **Tema 15** trata los SGBD relacionales, orientados a objetos y NoSQL como sistemas; el **Tema 16**, el **modelo conceptual** de datos (entidad-relación) que se traduce al modelo relacional; el **Tema 17**, el **diseño lógico** (normalización) que produce el esquema de tablas sobre el que este Tema 19 formula las consultas.
 
 ### 1.2. Álgebra relacional y el cálculo relacional
 
@@ -62,7 +62,7 @@ Codd definió formalmente dos lenguajes equivalentes para interrogar el modelo r
 - **Producto cartesiano** (×): combina **cada** tupla de una relación con **cada** tupla de otra. Es la base sobre la que se define el **join**.
 - **Operadores derivados**, expresables a partir de los anteriores pero fundamentales en la práctica: la **reunión** o **join** (⋈, un producto cartesiano seguido de una selección por la condición de reunión) y la **división** (÷, resuelve consultas del tipo «qué X están relacionados con TODOS los Y»).
 
-> **[DATO CLAVE EXAMEN]** El álgebra relacional es **procedimental**: el orden en que se escriben y componen los operadores importa y determina cómo se calcula el resultado. El **cálculo relacional** es **declarativo**: solo se especifica **qué** propiedades debe cumplir el resultado, sin indicar el procedimiento. **SQL hereda ambos rasgos**: en su sintaxis es declarativo (se parece al cálculo relacional), pero internamente el optimizador del SGBD lo traduce a un **plan de ejecución** expresado en términos algebraicos [DATE-REL, cap. 6].
+> **[DATO CLAVE]** El álgebra relacional es **procedimental**: el orden en que se escriben y componen los operadores importa y determina cómo se calcula el resultado. El **cálculo relacional** es **declarativo**: solo se especifica **qué** propiedades debe cumplir el resultado, sin indicar el procedimiento. **SQL hereda ambos rasgos**: en su sintaxis es declarativo (se parece al cálculo relacional), pero internamente el optimizador del SGBD lo traduce a un **plan de ejecución** expresado en términos algebraicos [DATE-REL, cap. 6].
 
 **Cálculo relacional.** Se basa en la **lógica de predicados de primer orden**: una consulta se expresa como `{ t | P(t) }`, es decir, «el conjunto de tuplas *t* tales que se cumple el predicado *P*» [CODD70]. Existen dos variantes:
 
@@ -90,7 +90,7 @@ Dentro de un SGBD, el lenguaje de interrogación se subdivide, por **función**,
 | Lenguaje de Control de Datos | **DCL** | Gestiona **permisos** y seguridad de acceso | `GRANT`, `REVOKE` |
 | Lenguaje de Control de Transacciones | **TCL** | Gestiona el **ciclo de vida de las transacciones** | `COMMIT`, `ROLLBACK`, `SAVEPOINT`, `SET TRANSACTION` |
 
-> **[DATO CLAVE EXAMEN]** El estándar ISO/IEC 9075 no separa formalmente DQL del DML: `SELECT` se clasifica dentro del DML en la norma [ISO9075]. La distinción DDL/DML/**DQL**/DCL/TCL es una convención **didáctica**, muy usada en oposiciones y manuales, que separa el `SELECT` (consulta, no modifica datos) del resto de DML (que sí modifica) por su naturaleza claramente distinta. Es importante saber reconocer ambas clasificaciones.
+> **[DATO CLAVE]** El estándar ISO/IEC 9075 no separa formalmente DQL del DML: `SELECT` se clasifica dentro del DML en la norma [ISO9075]. La distinción DDL/DML/**DQL**/DCL/TCL es una convención **didáctica**, muy usada en oposiciones y manuales, que separa el `SELECT` (consulta, no modifica datos) del resto de DML (que sí modifica) por su naturaleza claramente distinta. Es importante saber reconocer ambas clasificaciones.
 
 **DDL (Data Definition Language).** Opera sobre el **catálogo o diccionario de datos** del SGBD: crea y elimina objetos (`CREATE TABLE`, `DROP INDEX`), y modifica la estructura de los ya existentes (`ALTER TABLE … ADD COLUMN`). En la mayoría de motores, las sentencias DDL provocan un **commit implícito**: no se pueden deshacer con `ROLLBACK` como una operación DML normal.
 
@@ -102,18 +102,18 @@ Dentro de un SGBD, el lenguaje de interrogación se subdivide, por **función**,
 
 **TCL (Transaction Control Language).** Gestiona la atomicidad de un conjunto de operaciones: `COMMIT` confirma de forma permanente los cambios de la transacción; `ROLLBACK` los deshace; `SAVEPOINT` marca un punto intermedio al que se puede retroceder sin deshacer toda la transacción. Estas sentencias son el mecanismo con el que el SGBD garantiza las propiedades **ACID** (Atomicidad, Consistencia, Aislamiento, Durabilidad) [ACID83].
 
-> **[EJEMPLO AYTO MADRID]** Dar de alta un nuevo tipo de tasa municipal en el sistema implica los cinco sublenguajes: **DDL** para crear la tabla `TASA_NUEVA` si no existe; **DML** para insertar sus registros iniciales; **DQL** para comprobar que se ha cargado correctamente; **DCL** para conceder al perfil «gestor tributario» permiso de `SELECT` e `INSERT` sobre la tabla, pero no de `DROP`; y **TCL** para que la carga inicial de datos se confirme como una única unidad atómica (`COMMIT`) o se deshaga entera si algo falla a mitad (`ROLLBACK`).
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Dar de alta un nuevo tipo de tasa municipal en el sistema implica los cinco sublenguajes: **DDL** para crear la tabla `TASA_NUEVA` si no existe; **DML** para insertar sus registros iniciales; **DQL** para comprobar que se ha cargado correctamente; **DCL** para conceder al perfil «gestor tributario» permiso de `SELECT` e `INSERT` sobre la tabla, pero no de `DROP`; y **TCL** para que la carga inicial de datos se confirme como una única unidad atómica (`COMMIT`) o se deshaga entera si algo falla a mitad (`ROLLBACK`).
 
 ### 1.4. Lenguajes procedimentales y declarativos
 
-Ya introducida la distinción en §1.2 para álgebra/cálculo, conviene generalizarla porque es una de las preguntas más recurrentes del bloque [DATE-REL, cap. 6; MELTON, cap. 1]:
+Ya introducida la distinción en §1.2 para álgebra/cálculo, conviene generalizarla [DATE-REL, cap. 6; MELTON, cap. 1]:
 
 - **Procedimental**: el usuario especifica **el procedimiento**, es decir, la secuencia de pasos que hay que ejecutar para obtener el resultado (**CÓMO**). El álgebra relacional es procedimental.
 - **Declarativo**: el usuario especifica **las propiedades del resultado deseado** (**QUÉ**), y es el sistema —normalmente a través de un **optimizador de consultas**— quien decide el procedimiento concreto (el **plan de ejecución**) para obtenerlo de la forma más eficiente. El cálculo relacional, y con él **SQL**, son declarativos.
 
 **SQL es un lenguaje de cuarta generación (4GL) declarativo**: un `SELECT` describe el resultado que se quiere (qué filas, qué columnas, bajo qué condiciones), pero no indica en qué orden física se recorren las tablas ni qué algoritmo de *join* se usa; eso lo decide el **optimizador** en función de estadísticas, índices y coste estimado. Dos consultas SQL equivalentes desde el punto de vista lógico pueden ejecutarse con planes de ejecución muy distintos.
 
-> **[DATO CLAVE EXAMEN]** SQL es **declarativo en su sintaxis** pero **procedimental en su ejecución interna**: el motor SQL traduce internamente cada consulta a una secuencia de operadores algebraicos (selección, proyección, reunión…) organizados en un **árbol de ejecución**, que es lo que realmente procesa el motor de bases de datos [DATE-REL, cap. 6].
+> **[DATO CLAVE]** SQL es **declarativo en su sintaxis** pero **procedimental en su ejecución interna**: el motor SQL traduce internamente cada consulta a una secuencia de operadores algebraicos (selección, proyección, reunión…) organizados en un **árbol de ejecución**, que es lo que realmente procesa el motor de bases de datos [DATE-REL, cap. 6].
 
 ### 1.5. Utilización de lenguajes en aplicaciones
 
@@ -125,7 +125,7 @@ Una aplicación rara vez interroga la base de datos «a mano»: necesita un **me
 - **ORM** (*Object-Relational Mapping*): capa de abstracción que traduce automáticamente entre **objetos** del lenguaje de programación y **filas** de tablas relacionales, generando el SQL correspondiente (Hibernate/JPA en Java, Entity Framework en .NET). Facilita la productividad, pero puede generar consultas subóptimas si se usa sin entender el SQL resultante.
 - **Procedimientos almacenados** (§3) como interfaz de acceso: la aplicación llama a un procedimiento por nombre en lugar de enviar SQL directamente, encapsulando la lógica de acceso en el servidor.
 
-> **[REFERENCIA CRUZADA]** El **Tema 21** (arquitectura Java EE) desarrolla en detalle **JDBC** y las capas de persistencia de las aplicaciones empresariales; el **Tema 23** trata los lenguajes de programación web que a menudo consumen datos vía API en lugar de SQL directo.
+> **[RELACIÓN CON OTROS TEMAS]** El **Tema 21** (arquitectura Java EE) desarrolla en detalle **JDBC** y las capas de persistencia de las aplicaciones empresariales; el **Tema 23** trata los lenguajes de programación web que a menudo consumen datos vía API en lugar de SQL directo.
 
 ---
 
@@ -151,9 +151,9 @@ Ante la proliferación de dialectos comerciales, **ANSI** (American National Sta
 | **SQL:2019** | 2019 | *Multidimensional arrays*, polimorfismo de tablas |
 | **SQL:2023** | 2023 | **SQL/PGQ**: consultas de **grafos de propiedades** sobre el modelo relacional |
 
-> **[DATO CLAVE EXAMEN]** Tres hitos imprescindibles para el examen: **SQL-86**, primer estándar ANSI/ISO; **SQL-92**, la revisión más citada porque introdujo la sintaxis moderna de `JOIN` y las subconsultas tal como se usan hoy; y **SQL:1999**, que trajo la **recursividad** y los **disparadores** —dos de los cuatro bloques de este mismo Tema 19— al estándar [MELTON, cap. 1; EISENBERG99].
+> **[DATO CLAVE]** Tres hitos imprescindibles: **SQL-86**, primer estándar ANSI/ISO; **SQL-92**, la revisión más citada porque introdujo la sintaxis moderna de `JOIN` y las subconsultas tal como se usan hoy; y **SQL:1999**, que trajo la **recursividad** y los **disparadores** —dos de los cuatro bloques de este mismo Tema 19— al estándar [MELTON, cap. 1; EISENBERG99].
 
-> **[REFERENCIA CRUZADA]** El origen de **System R** y la validación práctica del modelo relacional de Codd conectan con el **Tema 15** (SGBD relacionales: características y componentes) y con el **Tema 17** (diseño lógico relacional), ambos previos a este tema en el temario.
+> **[RELACIÓN CON OTROS TEMAS]** El origen de **System R** y la validación práctica del modelo relacional de Codd conectan con el **Tema 15** (SGBD relacionales: características y componentes) y con el **Tema 17** (diseño lógico relacional), ambos previos a este tema en el temario.
 
 ### 2.2. Niveles de conformidad
 
@@ -164,7 +164,7 @@ Ningún SGBD comercial implementa el 100 % del estándar SQL, ni todos implement
 
 Como consecuencia práctica, cada SGBD añade **extensiones propietarias** no estándar (funciones, tipos de datos, sintaxis procedimental — §2.9), lo que da lugar a **dialectos**: T-SQL (Microsoft SQL Server), PL/SQL (Oracle), PL/pgSQL (PostgreSQL), el dialecto de MySQL, etc. El **núcleo del estándar** (DQL, DDL, DML básico) es, sin embargo, muy portable entre motores.
 
-> **[DATO CLAVE EXAMEN]** No existe un SGBD 100 % conforme con SQL. La utilidad práctica del estándar no es que todos los motores lo implementen íntegro, sino que fija un **núcleo común** que hace el conocimiento de SQL **transferible** entre productos, y un vocabulario compartido para describir extensiones.
+> **[DATO CLAVE]** No existe un SGBD 100 % conforme con SQL. La utilidad práctica del estándar no es que todos los motores lo implementen íntegro, sino que fija un **núcleo común** que hace el conocimiento de SQL **transferible** entre productos, y un vocabulario compartido para describir extensiones.
 
 ### 2.3. Sintaxis de una sentencia SQL
 
@@ -194,7 +194,7 @@ Sin embargo, el **orden en que se escribe** una consulta **no** coincide con el 
 9. LIMIT/OFFSET → recorta el número de filas devueltas
 ```
 
-> **[DATO CLAVE EXAMEN]** El **orden lógico de evaluación** es una de las preguntas más frecuentes del bloque SQL: `FROM → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT`. Explica, por ejemplo, por qué un **alias** definido en `SELECT` no puede usarse en `WHERE` en la mayoría de motores (el `WHERE` se evalúa **antes** de que exista ese alias), pero sí puede usarse en `ORDER BY` (que se evalúa **después**) [SILBERSCHATZ, cap. 3].
+> **[DATO CLAVE]** El **orden lógico de evaluación** es el siguiente: `FROM → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT`. Explica, por ejemplo, por qué un **alias** definido en `SELECT` no puede usarse en `WHERE` en la mayoría de motores (el `WHERE` se evalúa **antes** de que exista ese alias), pero sí puede usarse en `ORDER BY` (que se evalúa **después**) [SILBERSCHATZ, cap. 3].
 
 ### 2.4. Operaciones de agregación, agrupamiento y filtrado
 
@@ -208,9 +208,9 @@ HAVING SUM(importe) > 100000
 ORDER BY total_recaudado DESC;
 ```
 
-> **[DATO CLAVE EXAMEN]** La distinción **WHERE frente a HAVING** es de las más preguntadas del temario: **`WHERE`** filtra **filas individuales**, **antes** de que existan los grupos, y **no puede** contener funciones de agregación; **`HAVING`** filtra **grupos ya agregados**, **después** de `GROUP BY`, y es la cláusula correcta para condiciones como `SUM(importe) > 100000`. Toda columna del `SELECT` que no esté en una función de agregación debe figurar en el `GROUP BY` (regla de **dependencia funcional del `GROUP BY`**).
+> **[DATO CLAVE]** La distinción **WHERE frente a HAVING** es la siguiente: **`WHERE`** filtra **filas individuales**, **antes** de que existan los grupos, y **no puede** contener funciones de agregación; **`HAVING`** filtra **grupos ya agregados**, **después** de `GROUP BY`, y es la cláusula correcta para condiciones como `SUM(importe) > 100000`. Toda columna del `SELECT` que no esté en una función de agregación debe figurar en el `GROUP BY` (regla de **dependencia funcional del `GROUP BY`**).
 
-> **[EJEMPLO AYTO MADRID]** «Distritos donde se ha recaudado más de 100.000 € en tributos» exige `HAVING`, porque la condición depende de un **total agregado por distrito**; «tributos liquidados después del 1 de enero» exige `WHERE`, porque la condición se evalúa **fila a fila** antes de agrupar nada.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** «Distritos donde se ha recaudado más de 100.000 € en tributos» exige `HAVING`, porque la condición depende de un **total agregado por distrito**; «tributos liquidados después del 1 de enero» exige `WHERE`, porque la condición se evalúa **fila a fila** antes de agrupar nada.
 
 ### 2.5. Tipologías de acoplamiento (Join)
 
@@ -243,9 +243,9 @@ FROM   FUNCIONARIO f1
 JOIN   FUNCIONARIO f2 ON f1.id_departamento = f2.id_departamento AND f1.id_funcionario < f2.id_funcionario;
 ```
 
-> **[DATO CLAVE EXAMEN]** El `LEFT JOIN` es el más preguntado en supuestos prácticos: es la forma estándar de responder a «todos los X, **tengan o no** relación con Y» (todos los contribuyentes, tengan o no tributos liquidados). Cuando la fila de la derecha no existe, sus columnas aparecen como `NULL`, y ese `NULL` es precisamente lo que permite **detectar la ausencia** con `WHERE t.importe IS NULL`.
+> **[DATO CLAVE]** El `LEFT JOIN` es la forma estándar de responder a «todos los X, **tengan o no** relación con Y» (todos los contribuyentes, tengan o no tributos liquidados). Cuando la fila de la derecha no existe, sus columnas aparecen como `NULL`, y ese `NULL` es precisamente lo que permite **detectar la ausencia** con `WHERE t.importe IS NULL`.
 
-> **[REFERENCIA CRUZADA]** El **operador de división** del álgebra relacional (§1.2) resuelve en SQL consultas del tipo «contribuyentes que tienen liquidado **todos** los tipos de tributo», que se implementan típicamente combinando `GROUP BY`/`HAVING COUNT(...) = (SELECT COUNT(*) FROM ...)` o con predicados cuantificados (§2.6).
+> **[RELACIÓN CON OTROS TEMAS]** El **operador de división** del álgebra relacional (§1.2) resuelve en SQL consultas del tipo «contribuyentes que tienen liquidado **todos** los tipos de tributo», que se implementan típicamente combinando `GROUP BY`/`HAVING COUNT(...) = (SELECT COUNT(*) FROM ...)` o con predicados cuantificados (§2.6).
 
 ### 2.6. Subconsultas: correlacionadas, no correlacionadas y predicados cuantificados
 
@@ -275,7 +275,7 @@ WHERE  EXISTS (SELECT 1 FROM TRIBUTO t WHERE t.dni_contribuyente = c.dni AND t.i
 | `ANY` / `SOME` (sinónimos) | La comparación es cierta para **al menos un** valor devuelto por la subconsulta |
 | `ALL` | La comparación es cierta para **todos** los valores devueltos por la subconsulta |
 
-> **[DATO CLAVE EXAMEN]** `EXISTS` suele ser más eficiente que `IN` con subconsultas grandes porque el motor puede **detenerse en la primera coincidencia** (no necesita construir el conjunto completo). `NOT IN`, además, tiene una trampa clásica de examen: si la subconsulta devuelve **algún `NULL`**, `NOT IN` puede no devolver ninguna fila (por la lógica trivaluada de SQL), mientras que `NOT EXISTS` no tiene ese problema.
+> **[DATO CLAVE]** `EXISTS` suele ser más eficiente que `IN` con subconsultas grandes porque el motor puede **detenerse en la primera coincidencia** (no necesita construir el conjunto completo). `NOT IN`, además, tiene una trampa: si la subconsulta devuelve **algún `NULL`**, `NOT IN` puede no devolver ninguna fila (por la lógica trivaluada de SQL), mientras que `NOT EXISTS` no tiene ese problema.
 
 > **[EJERCICIO RESUELTO]** «Contribuyentes cuyo tributo más alto es mayor que **todos** los tributos del distrito 1» se puede resolver con `ALL`: `SELECT dni_contribuyente FROM TRIBUTO WHERE importe > ALL (SELECT importe FROM TRIBUTO t2 JOIN CONTRIBUYENTE c2 ON t2.dni_contribuyente = c2.dni WHERE c2.id_distrito = 1)`. Es equivalente a comparar con el `MAX()` de esa subconsulta, pero `ALL` generaliza el patrón a cualquier operador de comparación.
 
@@ -317,9 +317,9 @@ WITH RECURSIVE organigrama AS (
 SELECT * FROM organigrama ORDER BY nivel;
 ```
 
-> **[DATO CLAVE EXAMEN]** Toda CTE recursiva necesita: (1) un **miembro ancla** sin referencia a sí misma, (2) `UNION ALL` (no `UNION`, que eliminaría duplicados de forma costosa e incluso podría impedir terminar en algunos casos) y (3) un **miembro recursivo** cuya condición de reunión avance hacia la parada. Sin una relación que reduzca el conjunto en cada paso, la recursión no termina.
+> **[DATO CLAVE]** Toda CTE recursiva necesita: (1) un **miembro ancla** sin referencia a sí misma, (2) `UNION ALL` (no `UNION`, que eliminaría duplicados de forma costosa e incluso podría impedir terminar en algunos casos) y (3) un **miembro recursivo** cuya condición de reunión avance hacia la parada. Sin una relación que reduzca el conjunto en cada paso, la recursión no termina.
 
-> **[EJEMPLO AYTO MADRID]** Una CTE recursiva es la forma natural de resolver jerarquías administrativas del Ayuntamiento: la estructura de **Áreas de Gobierno → Direcciones Generales → Subdirecciones** (Tema 3), o un árbol de **expedientes padre-hijo** cuando un expediente se desglosa en sub-expedientes.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Una CTE recursiva es la forma natural de resolver jerarquías administrativas del Ayuntamiento: la estructura de **Áreas de Gobierno → Direcciones Generales → Subdirecciones** (Tema 3), o un árbol de **expedientes padre-hijo** cuando un expediente se desglosa en sub-expedientes.
 
 ### 2.8. Funciones de ventana analíticas
 
@@ -345,9 +345,9 @@ Funciones de ventana más habituales:
 | `LEAD(col, n)` | Valor de la columna en la fila **n posiciones posterior** dentro de la partición |
 | `SUM()/AVG()/COUNT()… OVER (...)` | Funciones de agregación aplicadas **como ventana**, sin colapsar filas |
 
-> **[DATO CLAVE EXAMEN]** Diferencia clave con `GROUP BY`: `GROUP BY` **reduce** el número de filas del resultado (una por grupo); una función de ventana **conserva todas las filas originales** y añade una columna calculada sobre su partición. `PARTITION BY` divide en grupos (como `GROUP BY`, pero sin colapsar); el `ORDER BY` **dentro** del `OVER (...)` define el orden en que se calcula la función dentro de cada partición (imprescindible para `ROW_NUMBER`, `RANK`, `LAG`/`LEAD`).
+> **[DATO CLAVE]** Diferencia clave con `GROUP BY`: `GROUP BY` **reduce** el número de filas del resultado (una por grupo); una función de ventana **conserva todas las filas originales** y añade una columna calculada sobre su partición. `PARTITION BY` divide en grupos (como `GROUP BY`, pero sin colapsar); el `ORDER BY` **dentro** del `OVER (...)` define el orden en que se calcula la función dentro de cada partición (imprescindible para `ROW_NUMBER`, `RANK`, `LAG`/`LEAD`).
 
-> **[EJEMPLO AYTO MADRID]** «Para cada contribuyente, mostrar cada tributo junto con el porcentaje que representa sobre el total que ese contribuyente paga» es un caso típico de ventana: `importe / SUM(importe) OVER (PARTITION BY dni_contribuyente)`, calculado fila a fila sin perder el detalle de cada tributo individual (que sí se perdería con un `GROUP BY`).
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** «Para cada contribuyente, mostrar cada tributo junto con el porcentaje que representa sobre el total que ese contribuyente paga» es un caso típico de ventana: `importe / SUM(importe) OVER (PARTITION BY dni_contribuyente)`, calculado fila a fila sin perder el detalle de cada tributo individual (que sí se perdería con un `GROUP BY`).
 
 ### 2.9. Extensiones del estándar y extensiones procedimentales
 
@@ -356,7 +356,7 @@ El **núcleo** del estándar SQL (DDL, DML, DQL básicos) es muy portable, pero 
 - **Extensiones procedimentales**: el estándar define una sintaxis de referencia, **SQL/PSM** (*Persistent Stored Modules*, ISO/IEC 9075-4), para escribir procedimientos almacenados y disparadores con estructuras de control (§3), pero en la práctica **cada motor implementa su propio dialecto procedimental**, inspirado en SQL/PSM pero no idéntico a él: **PL/SQL** en Oracle `[ORACLE-DOC]`, **T-SQL** (*Transact-SQL*) en Microsoft SQL Server `[MSSQL-DOC]`, **PL/pgSQL** en PostgreSQL `[PSQL-DOC]`, y el dialecto propio de MySQL `[MYSQL-DOC]`.
 - **Extensiones funcionales**: soporte de **JSON** (funciones como `JSON_VALUE`, `JSON_TABLE`, normalizadas en SQL:2016), tipos y funciones **geoespaciales** (no forman parte del núcleo del estándar, se rigen por especificaciones del *Open Geospatial Consortium*), y, desde SQL:2023, consultas de **grafos de propiedades** (SQL/PGQ).
 
-> **[DATO CLAVE EXAMEN]** Distinguir con precisión: el **estándar SQL** define el núcleo declarativo (DDL/DML/DQL/DCL/TCL) y una referencia procedimental (SQL/PSM); los **dialectos procedimentales reales** (PL/SQL, T-SQL, PL/pgSQL) son **extensiones no estándar**, cada una con su propia sintaxis, aunque comparten conceptos comunes (variables, cursores, control de flujo, excepciones) que sí están normalizados a nivel conceptual en SQL/PSM [MELTON-PSM].
+> **[DATO CLAVE]** Distinguir con precisión: el **estándar SQL** define el núcleo declarativo (DDL/DML/DQL/DCL/TCL) y una referencia procedimental (SQL/PSM); los **dialectos procedimentales reales** (PL/SQL, T-SQL, PL/pgSQL) son **extensiones no estándar**, cada una con su propia sintaxis, aunque comparten conceptos comunes (variables, cursores, control de flujo, excepciones) que sí están normalizados a nivel conceptual en SQL/PSM [MELTON-PSM].
 
 ---
 
@@ -374,7 +374,7 @@ Un **procedimiento almacenado** (*stored procedure*) es un bloque de código —
 
 Una **función almacenada** (*stored function*) se diferencia del procedimiento en que **siempre devuelve un único valor** mediante `RETURN` y, en la mayoría de motores, puede **usarse dentro de una expresión SQL** (por ejemplo, en un `SELECT`); un procedimiento se **invoca** como sentencia independiente (`CALL`) y puede devolver **cero, uno o varios** valores a través de parámetros de salida (§3.3).
 
-> **[REFERENCIA CRUZADA]** Los **procedimientos, funciones y parámetros** en un lenguaje de programación de propósito general se estudian en el **Tema 18**; este Tema 19 aplica los mismos conceptos —modularidad, parámetros, ámbito— al contexto específico del **servidor de bases de datos**.
+> **[RELACIÓN CON OTROS TEMAS]** Los **procedimientos, funciones y parámetros** en un lenguaje de programación de propósito general se estudian en el **Tema 18**; este Tema 19 aplica los mismos conceptos —modularidad, parámetros, ámbito— al contexto específico del **servidor de bases de datos**.
 
 ### 3.2. Arquitectura y ciclo de vida de ejecución en el servidor
 
@@ -386,7 +386,7 @@ El ciclo de vida de un procedimiento almacenado atraviesa varias fases [GMUW, ca
 4. **Invalidación y recompilación**: el plan se invalida (y se recalcula en la siguiente llamada) cuando cambian las **estadísticas** de las tablas implicadas, se modifican objetos referenciados (por ejemplo, se añade un índice) o el propio código del procedimiento se **altera** (`ALTER PROCEDURE`).
 5. **Eliminación** (`DROP PROCEDURE`): borra el procedimiento del catálogo; cualquier objeto que dependiera de él (otro procedimiento, un disparador) queda inválido si no se gestiona la dependencia.
 
-> **[DATO CLAVE EXAMEN]** La ventaja de rendimiento de un procedimiento almacenado frente a enviar la misma consulta repetidamente como SQL dinámico se debe, sobre todo, a la **reutilización del plan de ejecución cacheado**: el coste de analizar y optimizar se paga **una vez**, no en cada llamada.
+> **[DATO CLAVE]** La ventaja de rendimiento de un procedimiento almacenado frente a enviar la misma consulta repetidamente como SQL dinámico se debe, sobre todo, a la **reutilización del plan de ejecución cacheado**: el coste de analizar y optimizar se paga **una vez**, no en cada llamada.
 
 ### 3.3. Parámetros de entrada, salida y retorno
 
@@ -414,7 +414,7 @@ FIN
 
 Una **función**, a diferencia del procedimiento, siempre incluye una cláusula `RETURN` (o `RETURNS` en su declaración) que fija el **tipo del valor único** que devuelve, y esa `RETURN` **termina la ejecución** de la función en el punto en que se alcanza.
 
-> **[DATO CLAVE EXAMEN]** Regla mnemotécnica: **IN se lee, OUT se escribe, INOUT se lee y se escribe**. Un procedimiento puede tener **varios** parámetros `OUT`/`INOUT` (varios «resultados» de salida); una función solo tiene **un único** valor de retorno vía `RETURN`, aunque puede aceptar tantos parámetros `IN` como necesite.
+> **[DATO CLAVE]** Regla mnemotécnica: **IN se lee, OUT se escribe, INOUT se lee y se escribe**. Un procedimiento puede tener **varios** parámetros `OUT`/`INOUT` (varios «resultados» de salida); una función solo tiene **un único** valor de retorno vía `RETURN`, aunque puede aceptar tantos parámetros `IN` como necesite.
 
 ### 3.4. Gestión de cursores y tipos de cursores
 
@@ -450,9 +450,9 @@ FIN_BUCLE
 CERRAR c_tributos
 ```
 
-> **[DATO CLAVE EXAMEN]** Ciclo del cursor explícito: **DECLARE → OPEN → FETCH (en bucle) → CLOSE**. Un cursor abierto y no cerrado consume recursos del servidor (memoria, bloqueos) mientras dura la sesión; es una **mala práctica** habitual olvidar el `CLOSE`. Siempre que la lógica se pueda expresar como una operación de **conjunto** (un `UPDATE` con `WHERE`, por ejemplo), es preferible a recorrer fila a fila con un cursor, por rendimiento.
+> **[DATO CLAVE]** Ciclo del cursor explícito: **DECLARE → OPEN → FETCH (en bucle) → CLOSE**. Un cursor abierto y no cerrado consume recursos del servidor (memoria, bloqueos) mientras dura la sesión; es una **mala práctica** habitual olvidar el `CLOSE`. Siempre que la lógica se pueda expresar como una operación de **conjunto** (un `UPDATE` con `WHERE`, por ejemplo), es preferible a recorrer fila a fila con un cursor, por rendimiento.
 
-> **[EJEMPLO AYTO MADRID]** Recalcular la bonificación de cada expediente de un lote, aplicando una regla distinta según el historial de cada contribuyente, es un caso legítimo de cursor: la regla no se puede expresar como una única sentencia `UPDATE` de conjunto porque depende de una lógica condicional compleja fila a fila.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Recalcular la bonificación de cada expediente de un lote, aplicando una regla distinta según el historial de cada contribuyente, es un caso legítimo de cursor: la regla no se puede expresar como una única sentencia `UPDATE` de conjunto porque depende de una lógica condicional compleja fila a fila.
 
 ### 3.5. Estructuras de control de flujo
 
@@ -473,7 +473,7 @@ INICIO
 FIN
 ```
 
-> **[REFERENCIA CRUZADA]** Las estructuras `SI/SEGUN_CASO` y `MIENTRAS/REPETIR` son formalmente las mismas que las **instrucciones condicionales**, **bucles y recursividad** del **Tema 18** (Böhm-Jacopini: secuencia, selección, iteración); aquí se aplican dentro de un procedimiento que vive **en el servidor** en lugar de en una aplicación cliente.
+> **[RELACIÓN CON OTROS TEMAS]** Las estructuras `SI/SEGUN_CASO` y `MIENTRAS/REPETIR` son formalmente las mismas que las **instrucciones condicionales**, **bucles y recursividad** del **Tema 18** (Böhm-Jacopini: secuencia, selección, iteración); aquí se aplican dentro de un procedimiento que vive **en el servidor** en lugar de en una aplicación cliente.
 
 ### 3.6. Gestión de excepciones y errores
 
@@ -499,7 +499,7 @@ INICIO
 FIN
 ```
 
-> **[DATO CLAVE EXAMEN]** Un manejador de excepciones bien diseñado debe: (1) capturar el error **más específico** posible antes que uno genérico, (2) decidir explícitamente si hace `ROLLBACK` (deshacer) o puede continuar, y (3) **no silenciar** el error sin registrarlo — un `CATCH` vacío que «traga» la excepción es una de las peores prácticas de programación de bases de datos, porque oculta fallos que después son muy difíciles de depurar.
+> **[DATO CLAVE]** Un manejador de excepciones bien diseñado debe: (1) capturar el error **más específico** posible antes que uno genérico, (2) decidir explícitamente si hace `ROLLBACK` (deshacer) o puede continuar, y (3) **no silenciar** el error sin registrarlo — un `CATCH` vacío que «traga» la excepción es una de las peores prácticas de programación de bases de datos, porque oculta fallos que después son muy difíciles de depurar.
 
 ---
 
@@ -509,7 +509,7 @@ FIN
 
 Un **disparador** o **trigger** es un tipo especial de procedimiento almacenado que **no se invoca explícitamente** por su nombre, sino que el SGBD lo **ejecuta automáticamente** («se dispara») en respuesta a un **evento** que ocurre sobre una tabla o vista: una operación DML (`INSERT`, `UPDATE`, `DELETE`) o, en algunos motores, un evento del propio sistema o del calendario [SILBERSCHATZ, cap. 5; ELMASRI, cap. 5]. Es la aplicación, dentro del SGBD, de una **arquitectura orientada a eventos**: en lugar de que la aplicación cliente tenga que acordarse de ejecutar una acción derivada cada vez que modifica un dato, esa acción queda **garantizada por el propio motor**, con independencia de qué aplicación o usuario haya originado el cambio.
 
-> **[DATO CLAVE EXAMEN]** La diferencia esencial entre un **procedimiento almacenado** y un **disparador**: el procedimiento se ejecuta cuando **alguien lo llama** explícitamente (`CALL`); el disparador se ejecuta cuando **ocurre el evento** para el que está definido, sin que nadie lo invoque directamente. Un disparador **no admite parámetros** de entrada al estilo de un procedimiento: recibe implícitamente el contexto del evento (los valores `OLD`/`NEW` de la fila afectada).
+> **[DATO CLAVE]** La diferencia esencial entre un **procedimiento almacenado** y un **disparador**: el procedimiento se ejecuta cuando **alguien lo llama** explícitamente (`CALL`); el disparador se ejecuta cuando **ocurre el evento** para el que está definido, sin que nadie lo invoque directamente. Un disparador **no admite parámetros** de entrada al estilo de un procedimiento: recibe implícitamente el contexto del evento (los valores `OLD`/`NEW` de la fila afectada).
 
 ### 4.2. Clasificación de los disparadores
 
@@ -533,9 +533,9 @@ Un disparador **`INSTEAD OF`** **sustituye por completo** la operación DML sobr
 
 Además de los disparadores ligados a DML, la mayoría de motores ofrecen **eventos programados** (*scheduled events* / *jobs*), que se disparan por **tiempo** en lugar de por una modificación de datos: el *Event Scheduler* de MySQL `[MYSQL-DOC]`, el *SQL Server Agent* `[MSSQL-DOC]`, `DBMS_SCHEDULER` de Oracle `[ORACLE-DOC]` o `pg_cron` en PostgreSQL `[PSQL-DOC]` son ejemplos de esta capacidad, típicamente usada para tareas de mantenimiento periódico (purgas, recálculo de agregados, generación de informes nocturnos).
 
-> **[DATO CLAVE EXAMEN]** Combinaciones posibles: `BEFORE`/`AFTER` × `FOR EACH ROW`/`FOR EACH STATEMENT` da **cuatro** tipos de disparador DML; `INSTEAD OF` es un caso aparte, exclusivo de vistas no actualizables directamente, y los eventos programados son un cuarto tipo, disparado por **tiempo** y no por DML.
+> **[DATO CLAVE]** Combinaciones posibles: `BEFORE`/`AFTER` × `FOR EACH ROW`/`FOR EACH STATEMENT` da **cuatro** tipos de disparador DML; `INSTEAD OF` es un caso aparte, exclusivo de vistas no actualizables directamente, y los eventos programados son un cuarto tipo, disparado por **tiempo** y no por DML.
 
-> **[EJEMPLO AYTO MADRID]** Una vista `VISTA_EXPEDIENTES_COMPLETA` que combina `EXPEDIENTE`, `CONTRIBUYENTE` y `FUNCIONARIO` con varios `JOIN` no admite `UPDATE` directo en la mayoría de motores; un disparador `INSTEAD OF UPDATE` sobre esa vista traduce la actualización recibida a los `UPDATE` correctos sobre `EXPEDIENTE` (y, si procede, sobre `CONTRIBUYENTE`), de forma transparente para quien consulta la vista.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Una vista `VISTA_EXPEDIENTES_COMPLETA` que combina `EXPEDIENTE`, `CONTRIBUYENTE` y `FUNCIONARIO` con varios `JOIN` no admite `UPDATE` directo en la mayoría de motores; un disparador `INSTEAD OF UPDATE` sobre esa vista traduce la actualización recibida a los `UPDATE` correctos sobre `EXPEDIENTE` (y, si procede, sobre `CONTRIBUYENTE`), de forma transparente para quien consulta la vista.
 
 ### 4.3. Casos de uso de eventos y disparadores
 
@@ -561,7 +561,7 @@ Reglas de negocio **complejas o cruzadas entre tablas** que las restricciones de
 
 Mantenimiento de **columnas derivadas o desnormalizadas** que dependen de otras tablas: actualizar un contador de expedientes abiertos en la tabla `DISTRITO` cada vez que se inserta un `EXPEDIENTE`, sincronizar un campo `fecha_ultima_modificacion` automáticamente en cada `UPDATE`, o generar una notificación (insertar en una cola de mensajes) cuando cambia el estado de un expediente a un valor crítico.
 
-> **[REFERENCIA CRUZADA]** La **auditoría y trazabilidad** conecta con el **Esquema Nacional de Seguridad** [ENS], que exige registro y trazabilidad de las operaciones sobre datos sensibles; y con el **Tema 6** (Ley 19/2013 de transparencia), en la medida en que la trazabilidad de las modificaciones sustenta la rendición de cuentas de la actuación administrativa.
+> **[RELACIÓN CON OTROS TEMAS]** La **auditoría y trazabilidad** conecta con el **Esquema Nacional de Seguridad** [ENS], que exige registro y trazabilidad de las operaciones sobre datos sensibles; y con el **Tema 6** (Ley 19/2013 de transparencia), en la medida en que la trazabilidad de las modificaciones sustenta la rendición de cuentas de la actuación administrativa.
 
 ### 4.4. Riesgos, limitaciones y buenas prácticas
 
@@ -574,7 +574,7 @@ Los disparadores son una herramienta potente, pero conllevan riesgos bien docume
 
 **Buenas prácticas** ampliamente aceptadas: documentar claramente la existencia y el propósito de cada disparador (idealmente en un catálogo accesible al equipo, no solo en el propio código), mantener su lógica **mínima y centrada** en una sola responsabilidad, evitar cascadas profundas de disparadores encadenados, preferir restricciones declarativas (`CHECK`, clave foránea, `UNIQUE`) siempre que basten para expresar la regla, y probar explícitamente el comportamiento ante operaciones **masivas** (miles de filas en una sola sentencia), no solo ante cambios de una fila.
 
-> **[DATO CLAVE EXAMEN]** Los disparadores deben reservarse para lo que **no se puede expresar de forma declarativa**: si una regla se puede implementar con una restricción `CHECK` o una clave foránea, esa opción es preferible a un disparador, porque el optimizador la puede aprovechar mejor y el comportamiento es más predecible y menos propenso a efectos ocultos [ISO25010].
+> **[DATO CLAVE]** Los disparadores deben reservarse para lo que **no se puede expresar de forma declarativa**: si una regla se puede implementar con una restricción `CHECK` o una clave foránea, esa opción es preferible a un disparador, porque el optimizador la puede aprovechar mejor y el comportamiento es más predecible y menos propenso a efectos ocultos [ISO25010].
 
 ---
 
@@ -590,7 +590,7 @@ El estándar SQL sigue evolucionando para responder a necesidades que no existí
 - **Generación de SQL desde la capa de aplicación**: el uso de **ORM** y *query builders* (§1.5) sigue creciendo en aplicaciones modernas, lo que hace todavía más relevante entender el SQL que esas herramientas generan «por debajo», para poder diagnosticar problemas de rendimiento que la capa de abstracción no siempre deja ver.
 - **Consultas continuas sobre flujos de datos**: en arquitecturas orientadas a eventos a gran escala, han surgido variantes de SQL para expresar consultas **continuas** sobre flujos de datos en movimiento (*streaming SQL*), en lugar de sobre datos ya almacenados, aplicando conceptos como ventanas temporales que recuerdan, conceptualmente, a las funciones de ventana de §2.8.
 
-> **[DATO CLAVE EXAMEN]** Estas tendencias **amplían** el estándar SQL sin sustituir sus fundamentos: el modelo relacional (§1), el núcleo declarativo del `SELECT` (§2.3-2.8) y la lógica de procedimientos/disparadores (§3-4) siguen siendo la base sobre la que se construyen todas estas extensiones más recientes.
+> **[DATO CLAVE]** Estas tendencias **amplían** el estándar SQL sin sustituir sus fundamentos: el modelo relacional (§1), el núcleo declarativo del `SELECT` (§2.3-2.8) y la lógica de procedimientos/disparadores (§3-4) siguen siendo la base sobre la que se construyen todas estas extensiones más recientes.
 
 ---
 

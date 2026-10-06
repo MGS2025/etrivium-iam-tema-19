@@ -2,7 +2,7 @@
 
 > **Título oficial**: Lenguajes de interrogación de bases de datos. El estándar ANSI SQL. Procedimientos almacenados. Eventos y disparadores.
 >
-> **Criterio**: todo dato del contenido cita un **ID** inline (p. ej. `[DATE-REL, cap. 3]`). Tier 1 = obras canónicas y normas del modelo relacional/SQL; Tier 2 = documentación oficial de motores (para ilustrar extensiones procedimentales sin atar el tema a ninguno, según decisión de Joan de usar **ANSI SQL puro** en los ejemplos); Tier 3 = material de apoyo y marco del puesto, no citado como contenido técnico.
+> **Criterio**: todo dato del contenido cita un **ID** inline (p. ej. `[DATE-REL, cap. 3]`). Tier 1 = obras canónicas y normas del modelo relacional/SQL; Tier 2 = documentación oficial de motores (para ilustrar extensiones procedimentales sin atar el tema a ninguno; los ejemplos usan **ANSI SQL puro**); Tier 3 = material de apoyo y marco del puesto, no citado como contenido técnico.
 
 ---
 
@@ -37,10 +37,11 @@
 
 | ID | Referencia |
 |---|---|
-| `[ISO25010]` | ISO/IEC 25010:2011 *Systems and software Quality Requirements and Evaluation (SQuaRE)* — mantenibilidad, fiabilidad aplicadas a lógica en el SGBD. |
+| `[ISO25010]` | ISO/IEC 25010:2023 *Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model*. Anula y sustituye a la ISO/IEC 25010:2011: es la edición vigente del modelo de calidad del producto — mantenibilidad, fiabilidad aplicadas a lógica en el SGBD. |
+| `[ISO25010-2011]` | ISO/IEC 25010:2011 *Systems and software Quality Requirements and Evaluation (SQuaRE) — System and software quality models*. Anulada y sustituida por la ISO/IEC 25010:2023. Se conserva la referencia porque es la que recogen los temarios al uso. |
 | `[ENS]` | Real Decreto 311/2022, Esquema Nacional de Seguridad — trazabilidad y auditoría, relevante para disparadores de auditoría. |
 | `[BOAM10032]` | BOAM 10.032 (23-dic-2025). Bases específicas TIC C1 Ayto. Madrid — temario oficial. |
 
 ---
 
-*Las referencias Tier 1 fijan el fundamento teórico (modelo relacional, álgebra/cálculo, estándar ISO/IEC 9075) y son la base de todo el contenido; Tier 2 se cita solo en los callouts de [REFERENCIA CRUZADA]/contexto para señalar cómo cada motor real nombra sus extensiones procedimentales, sin que ningún ejemplo del cuerpo del tema dependa de un motor concreto — los ejemplos de código son **ANSI SQL estándar**, y los de procedimientos/disparadores, **pseudocódigo SQL genérico** (decisión de Joan); Tier 3 enmarca la calidad y la seguridad aplicables en el Ayuntamiento de Madrid.*
+*Las referencias Tier 1 fijan el fundamento teórico (modelo relacional, álgebra/cálculo, estándar ISO/IEC 9075) y son la base de todo el contenido; Tier 2 se cita solo en los callouts de [RELACIÓN CON OTROS TEMAS]/contexto para señalar cómo cada motor real nombra sus extensiones procedimentales, sin que ningún ejemplo del cuerpo del tema dependa de un motor concreto — los ejemplos de código son **ANSI SQL estándar**, y los de procedimientos/disparadores, **pseudocódigo SQL genérico**; Tier 3 enmarca la calidad y la seguridad aplicables en el Ayuntamiento de Madrid.*

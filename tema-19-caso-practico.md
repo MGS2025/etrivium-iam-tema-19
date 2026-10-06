@@ -208,4 +208,4 @@ FIN
 
 ---
 
-*Los tres casos son orientativos y pensados para la autoevaluación; las soluciones muestran una vía correcta, no la única posible. Las consultas del Caso 1 usan SQL estándar; los procedimientos y disparadores de los Casos 2 y 3, pseudocódigo SQL genérico (decisión de Joan), independiente de cualquier motor concreto.*
+*Los tres casos son orientativos y pensados para la autoevaluación; las soluciones muestran una vía correcta, no la única posible. Las consultas del Caso 1 usan SQL estándar; los procedimientos y disparadores de los Casos 2 y 3, pseudocódigo SQL genérico, independiente de cualquier motor concreto.*
