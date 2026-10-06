@@ -183,7 +183,7 @@
 **Propósito**: Contrastar el orden de escritura con el orden real en que el motor evalúa las cláusulas.
 
 ```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 360" role="img" aria-label="Orden lógico de evaluación de un SELECT: FROM, JOIN, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY, LIMIT, distinto del orden en que se escribe la sentencia">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 370" role="img" aria-label="Orden lógico de evaluación de un SELECT: FROM, JOIN, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY, LIMIT, distinto del orden en que se escribe la sentencia">
   <style>.t6{font:700 12px system-ui,sans-serif;fill:#fff}.l6{font:10.5px system-ui,sans-serif;fill:#444}.h6{font:700 13px system-ui,sans-serif;fill:#0055a0}</style>
   <text x="330" y="22" text-anchor="middle" class="h6">Orden de escritura ≠ orden de evaluación</text>
   <text x="330" y="42" text-anchor="middle" style="font:700 11px system-ui;fill:#e89822">▼ El motor evalúa en este orden, de arriba abajo ▼</text>
@@ -198,7 +198,7 @@
   <rect x="40" y="294" width="580" height="30" rx="4" fill="#d13c3c"/><text x="330" y="314" text-anchor="middle" class="t6">8. ORDER BY / LIMIT — ordena y recorta el resultado final</text>
   </g>
   <text x="330" y="342" text-anchor="middle" style="font:700 11px system-ui;fill:#0055a0">Por eso un alias del SELECT no sirve en WHERE, pero sí en ORDER BY</text>
-  <text x="650" y="356" text-anchor="end" style="font:11px system-ui;fill:#666">[Fuente: SILBERSCHATZ, cap. 3]</text>
+  <text x="650" y="364" text-anchor="end" style="font:11px system-ui;fill:#666">[Fuente: SILBERSCHATZ, cap. 3]</text>
 </svg>
 ```
 
@@ -213,20 +213,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 340" role="img" aria-label="Diagramas de Venn de los tipos de join: INNER JOIN solo la intersección, LEFT JOIN todo el círculo izquierdo, RIGHT JOIN todo el círculo derecho, FULL JOIN ambos círculos completos">
   <style>.t7{font:700 11px system-ui,sans-serif;fill:#123}.l7{font:10.5px system-ui,sans-serif;fill:#444}.h7{font:700 13px system-ui,sans-serif;fill:#0055a0}</style>
   <text x="340" y="22" text-anchor="middle" class="h7">Tipos de JOIN (A = tabla izquierda, B = tabla derecha)</text>
-  <g transform="translate(60,50)">
+  <g transform="translate(25,50)">
     <circle cx="45" cy="60" r="45" fill="#0055a0" opacity="0.35"/><circle cx="85" cy="60" r="45" fill="#2d8659" opacity="0.35"/>
     <circle cx="65" cy="60" r="20" fill="#e89822"/>
     <text x="65" y="130" text-anchor="middle" class="t7">INNER JOIN</text><text x="65" y="146" text-anchor="middle" class="l7">solo coincidencias</text>
   </g>
-  <g transform="translate(230,50)">
+  <g transform="translate(190,50)">
     <circle cx="45" cy="60" r="45" fill="#0055a0"/><circle cx="85" cy="60" r="45" fill="#2d8659" opacity="0.35"/>
     <text x="65" y="130" text-anchor="middle" class="t7">LEFT JOIN</text><text x="65" y="146" text-anchor="middle" class="l7">todo A + coincid. de B</text>
   </g>
-  <g transform="translate(400,50)">
+  <g transform="translate(355,50)">
     <circle cx="45" cy="60" r="45" fill="#0055a0" opacity="0.35"/><circle cx="85" cy="60" r="45" fill="#2d8659"/>
     <text x="65" y="130" text-anchor="middle" class="t7">RIGHT JOIN</text><text x="65" y="146" text-anchor="middle" class="l7">todo B + coincid. de A</text>
   </g>
-  <g transform="translate(540,50)">
+  <g transform="translate(520,50)">
     <circle cx="45" cy="60" r="45" fill="#0055a0"/><circle cx="85" cy="60" r="45" fill="#2d8659"/>
     <text x="65" y="130" text-anchor="middle" class="t7">FULL JOIN</text><text x="65" y="146" text-anchor="middle" class="l7">todo A + todo B</text>
   </g>
@@ -278,14 +278,14 @@
 **Propósito**: Visualizar el bucle lógico ancla → recursivo → parada.
 
 ```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" role="img" aria-label="Ciclo de una CTE recursiva: el miembro ancla produce el conjunto inicial, el miembro recursivo se une con UNION ALL y se reevalúa sobre el resultado anterior hasta que no produce filas nuevas">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 346" role="img" aria-label="Ciclo de una CTE recursiva: el miembro ancla produce el conjunto inicial, el miembro recursivo se une con UNION ALL y se reevalúa sobre el resultado anterior hasta que no produce filas nuevas">
   <style>.t9{font:700 12px system-ui,sans-serif;fill:#fff}.s9{font:10.5px system-ui,sans-serif;fill:#fff}.l9{font:11px system-ui,sans-serif;fill:#444}.h9{font:700 13px system-ui,sans-serif;fill:#0055a0}</style>
   <text x="320" y="22" text-anchor="middle" class="h9">WITH RECURSIVE: ancla + miembro recursivo</text>
   <rect x="230" y="40" width="180" height="46" rx="6" fill="#0055a0"/><text x="320" y="60" text-anchor="middle" class="t9">MIEMBRO ANCLA</text><text x="320" y="78" text-anchor="middle" class="s9">consulta base (nivel 1)</text>
   <path d="M320 86 L320 116" stroke="#888" stroke-width="2" marker-end="url(#a9)"/>
   <text x="345" y="106" class="l9">UNION ALL</text>
   <rect x="200" y="118" width="240" height="46" rx="6" fill="#2d8659"/><text x="320" y="138" text-anchor="middle" class="t9">MIEMBRO RECURSIVO</text><text x="320" y="156" text-anchor="middle" class="s9">referencia la propia CTE</text>
-  <path d="M440 141 L500 141 L500 216 L462 216" stroke="#0055a0" stroke-width="2" fill="none" marker-end="url(#a9)"/>
+  <path d="M460 216 L500 216 L500 141 L444 141" stroke="#0055a0" stroke-width="2" fill="none" marker-end="url(#a9)"/><text x="470" y="210" class="l9">SÍ</text>
   <text x="506" y="170" class="l9">se repite sobre</text>
   <text x="506" y="184" class="l9">el resultado previo</text>
   <path d="M320 164 L320 194" stroke="#888" stroke-width="2" marker-end="url(#a9)"/>
@@ -294,8 +294,8 @@
   <text x="345" y="252" class="l9">NO</text>
   <rect x="230" y="262" width="180" height="40" rx="6" fill="#d13c3c"/><text x="320" y="287" text-anchor="middle" class="t9">PARADA (implícita)</text>
   <defs><marker id="a9" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#888"/></marker></defs>
-  <text x="60" y="330" class="l9">Sin una condición de reunión que reduzca el conjunto, la recursión no termina</text>
-  <text x="630" y="316" text-anchor="end" style="font:11px system-ui;fill:#666">[Fuente: EISENBERG99]</text>
+  <text x="60" y="322" class="l9">Sin una condición de reunión que reduzca el conjunto, la recursión no termina</text>
+  <text x="630" y="340" text-anchor="end" style="font:11px system-ui;fill:#666">[Fuente: EISENBERG99]</text>
 </svg>
 ```
 
@@ -315,9 +315,9 @@
   <rect x="190" y="42" width="140" height="60" rx="6" fill="#3778b5"/><text x="260" y="66" text-anchor="middle" class="t10">2. CATÁLOGO</text><text x="260" y="82" text-anchor="middle" class="s10">diccionario de</text><text x="260" y="94" text-anchor="middle" class="s10">datos del SGBD</text>
   <path d="M330 72 L358 72" stroke="#888" stroke-width="2" marker-end="url(#a10)"/>
   <rect x="360" y="42" width="150" height="60" rx="6" fill="#2d8659"/><text x="435" y="62" text-anchor="middle" class="t10">3. 1ª EJECUCIÓN</text><text x="435" y="78" text-anchor="middle" class="s10">genera plan y</text><text x="435" y="92" text-anchor="middle" class="s10">lo cachea</text>
-  <path d="M525 72 L553 72" stroke="#888" stroke-width="2" marker-end="url(#a10)"/>
+  <path d="M510 72 L547 72" stroke="#888" stroke-width="2" marker-end="url(#a10)"/>
   <rect x="555" y="42" width="105" height="60" rx="6" fill="#e89822"/><text x="607" y="66" text-anchor="middle" class="t10">4. SIGUIENTES</text><text x="607" y="82" text-anchor="middle" class="s10">reutiliza</text><text x="607" y="94" text-anchor="middle" class="s10">plan cacheado</text>
-  <path d="M607 102 C 607 170 435 170 435 132" stroke="#2d8659" stroke-width="2" fill="none" marker-end="url(#a10)"/>
+  <path d="M607 102 C 607 170 435 170 435 112" stroke="#2d8659" stroke-width="2" fill="none" marker-end="url(#a10)"/>
   <text x="340" y="178" text-anchor="middle" style="font:700 11px system-ui;fill:#2d8659">Rendimiento: se evita repetir análisis y optimización</text>
   <text x="340" y="194" text-anchor="middle" style="font:700 11px system-ui;fill:#2d8659">en cada llamada</text>
   <rect x="120" y="216" width="440" height="70" rx="6" fill="#fdecec" stroke="#d13c3c"/>
@@ -372,10 +372,10 @@
   <rect x="360" y="34" width="180" height="26" fill="#2d8659"/><text x="450" y="52" text-anchor="middle" class="t12">DE SENTENCIA</text>
   <rect x="20" y="60" width="160" height="26" fill="#e89822"/><text x="100" y="78" text-anchor="middle" class="t12">BEFORE</text>
   <rect x="20" y="86" width="160" height="26" fill="#c98a1f"/><text x="100" y="104" text-anchor="middle" class="t12">AFTER</text>
-  <rect x="180" y="60" width="180" height="26" fill="#fbe9cf"/><text x="270" y="78" text-anchor="middle" style="font:10.5px system-ui;fill:#123">valida/modifica antes,</text>
-  <rect x="180" y="86" width="180" height="26" fill="#fff"/><text x="270" y="104" text-anchor="middle" style="font:10.5px system-ui;fill:#123">1 ejecución por fila (OLD/NEW)</text>
-  <rect x="360" y="60" width="180" height="26" fill="#fbe9cf"/><text x="450" y="78" text-anchor="middle" style="font:10.5px system-ui;fill:#123">valida antes del lote,</text>
-  <rect x="360" y="86" width="180" height="26" fill="#fff"/><text x="450" y="104" text-anchor="middle" style="font:10.5px system-ui;fill:#123">1 ejecución por sentencia</text>
+  <rect x="180" y="60" width="180" height="52" fill="#fbe9cf" stroke="#fff"/><text x="270" y="81" text-anchor="middle" style="font:10.5px system-ui;fill:#123">valida/modifica antes,</text>
+  <text x="270" y="97" text-anchor="middle" style="font:10.5px system-ui;fill:#123">1 ejecución por fila (OLD/NEW)</text>
+  <rect x="360" y="60" width="180" height="52" fill="#e3f1e9" stroke="#fff"/><text x="450" y="81" text-anchor="middle" style="font:10.5px system-ui;fill:#123">valida antes del lote,</text>
+  <text x="450" y="97" text-anchor="middle" style="font:10.5px system-ui;fill:#123">1 ejecución por sentencia</text>
   <rect x="20" y="130" width="300" height="70" rx="6" fill="#0055a0"/>
   <text x="170" y="152" text-anchor="middle" class="t12">INSTEAD OF (sobre vistas)</text>
   <text x="170" y="172" text-anchor="middle" class="s12">sustituye el DML cuando la vista</text>
